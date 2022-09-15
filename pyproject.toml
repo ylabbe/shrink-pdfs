@@ -1,0 +1,91 @@
+[project]
+# See https://peps.python.org/pep-0621/
+name = "template_pkg"
+version = "0.1.0"
+description = "A template python package."
+authors = [
+    {name = "Yann Labbé", email="labbe.yann1994@gmail.com"},
+]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+
+]
+
+[project.optional-dependencies]
+dev = [
+  "anybadge==1.8.0",
+  "black==22.6.0",
+  "flake8==4.0.1",
+  "flake8-copyright==0.2.2",
+  "flake8-docstrings==1.6.0",
+  "flake8-isort==4.1.1",
+  "mypy==0.931",
+  "pytest==6.2.5",
+  "pytest-cov==3.0.0",
+  "sphinx==4.3.0",
+  "sphinx_rtd_theme==1.0.0",
+  "twine==3.7.1",
+]
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=45", "setuptools_scm>=6.2", "wheel"]
+
+[project.scripts]
+spam-cli = "template_pkg.spam"
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"]  # ["."] by default
+include = ["template_pkg*"]  # ["*"] by default
+
+[tool.black]
+extend-exclude = "deprecated|.ipynb|deps|data"
+line-length = 100
+
+[tool.isort]
+# Multi line output mode 3 is used to conform with Black. See
+# https://github.com/PyCQA/isort#multi-line-output-modes
+import_heading_firstparty = "MyPackage"
+import_heading_localfolder = "Local Folder"
+import_heading_stdlib = "Standard Library"
+import_heading_thirdparty = "Third Party"
+known_first_party = ['mypackage']
+multi_line_output = 3
+profile = "black"
+skip = ['local_data', 'build', 'deps']
+
+[tool.pytest.ini_options]
+norecursedirs = [".git", ".venv", "deprecated", "dist"]
+python_files = ["*_test.py"]
+
+[tool.coverage.report]
+# NOTE: Single-quoted strings are required in TOML for regular expressions
+exclude_lines = [
+  "pragma: no cover", # Need to re-enable the standard no cover match
+  '^\s*pass\s*$', # Skip any pass lines
+]
+
+[tool.mypy]
+disallow_untyped_defs = true
+ignore_missing_imports = true
+exclude = [
+  "venv",
+  "local_data",
+  "deps/",
+  "deprecated/",
+]
+no_implicit_optional = true
+show_error_codes = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+  "importlib.metadata",
+  "setuptools",
+  "setuptools_scm",
+]

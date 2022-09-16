@@ -16,24 +16,24 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-  "anybadge==1.8.0",
-  "black==22.6.0",
-  "flake8==4.0.1",
-  "flake8-copyright==0.2.2",
-  "flake8-docstrings==1.6.0",
-  "flake8-isort==4.1.1",
-  "mypy==0.931",
-  "pytest==6.2.5",
-  "pytest-cov==3.0.0",
-  "sphinx==4.3.0",
-  "sphinx_rtd_theme==1.0.0",
-  "twine==3.7.1",
+  "anybadge",
+  "black",
+  "flake8",
+  "flake8-copyright",
+  "flake8-docstrings",
+  "flake8-isort",
+  "mypy",
+  "pytest",
+  "pytest-cov",
+  "sphinx",
+  "sphinx_rtd_theme",
+  "twine",
   "ipdb",
 ]
 
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools>=61", "setuptools_scm>=6.2", "wheel"]
+requires = ["setuptools", "setuptools_scm", "wheel"]
 
 [project.scripts]
 shrink-pdfs = "shrink_pdfs.run:main"
